@@ -1,0 +1,81 @@
+---
+title: "CAPDAP"
+format: html
+editor: visual
+---
+
+# Data and R Setup
+
+Setting up:
+
+```{r}
+rm(list=ls())
+library(tidyverse)
+library(here)
+library(ggfortify)
+covid<-read.csv(here("data","Ramirez-Covid-Data.csv"))
+```
+
+Looking at the data:
+
+```{r}
+glimpse(covid)
+```
+
+Fixing some variables and getting rid of the weird "x" columns:
+
+```{r}
+covid<-covid[,1:14]
+covid$date<-mdy(covid$date)
+covid$location<-as.factor(covid$location)
+covid$continent<-as.factor(covid$continent)
+glimpse(covid)
+```
+
+# Now to actually look at the data
+
+grabbing the data I want:
+
+```{r}
+covid.sum<-covid|>
+  group_by(location,continent,population,cardiovasc_death_rate,median_age,human_development_index,)|>
+  summarise(max.cases=max(total_cases),max.deaths=max(total_deaths))
+```
+
+Save the new csv:
+
+```{r}
+write.csv(covid.sum,here("data","covid.summary.csv"),row.names = F)
+```
+
+### Exploring the stats for my hypotheses:
+
+##### Hyp 1: Cardivasc positively affects Total deaths
+
+```{r}
+plotCV<- covid.sum|>
+  filter(max.deaths<=250000)
+
+ggplot(plotCV, aes(cardiovasc_death_rate,max.deaths/population))+
+  geom_point()
+```
+
+Unclear just from looking at the plot. Maybe actually a negative correllation.
+
+##### Hyp 2: Higher median age means higher death rate
+
+```{r}
+ggplot(covid.sum,aes(median_age,max.deaths/population))+
+  geom_point()
+```
+
+I would definitely expect this to be a positive relationship.
+
+##### Hyp 3: Higher HDI means lower cases rate
+
+```{r}
+ggplot(covid.sum,aes(human_development_index,max.cases/population))+
+  geom_point()
+```
+
+Whoa! There actually seems to be a positive correlation. I imagine this could be due to countries with higher HDI's, though having higher qualities of life and health services, simply have more people who move around more. This could allow a disease like covid to spread more easily.

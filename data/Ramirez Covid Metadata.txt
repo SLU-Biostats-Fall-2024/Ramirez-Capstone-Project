@@ -1,0 +1,33 @@
+This is a metadata file created by Esteban Ramirez for the "Ramirez Covid Data" CSV
+The purpose of this is to provide background information on the data for my CAPDAP
+
+Citation:
+Mathieu, E., Ritchie, H., Ortiz-Ospina, E. et al. A global database of COVID-19 vaccinations. Nat Hum Behav (2021)
+
+Link:
+https://ourworldindata.org/covid-vaccinations#:~:text=Our%20work%20belongs%20to%20everyone 
+
+Description:
+
+The data in this dataset is all compiled by Our World in Data (OWID), who got all of this data from various sources, mainly WHO. The data is broken down by the day, starting at Dec 2, 2020 and ending on Aug 12, 2024. There is data for most countries and regions in the world.
+
+Key:
+Continent: continent
+Location: specific location, could be country, territory, etc.
+date: date
+total_cases: total cases of covid up to that date
+total_deaths: total deaths from covid up to that date
+population_density: population density of location
+median_age: median age of people in location
+cardiovasc_death_rate: rate of death caused by cardiovascular disease
+diabetes_prevalence: measure of how prevalent diabetes is in a location
+female_smokers: ratio of female smokers
+male_smokers:ratio of male smokers
+life_expectancy: life expectancy of people in location (years)
+human_development_index: measure of how developed a country is
+population: population of country
+
+
+Change log:
+1. removed extra data columns that were not of interest
+2. filled in "Africa" under continent where the location was "Africa"

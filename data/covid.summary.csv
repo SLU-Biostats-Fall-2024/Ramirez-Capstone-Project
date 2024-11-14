@@ -1,0 +1,256 @@
+"location","continent","population","cardiovasc_death_rate","median_age","human_development_index","max.cases","max.deaths"
+"Afghanistan","Asia",41128772,597.029,18.6,0.511,235214,7998
+"Africa","Africa",1426736614,NA,NA,NA,13145380,259117
+"Albania","Europe",2842318,304.195,38,0.795,335047,3605
+"Algeria","Africa",44903228,278.364,29.1,0.748,272139,6881
+"American Samoa","Oceania",44295,283.75,NA,NA,8359,34
+"Andorra","Europe",79843,109.135,NA,0.868,48015,159
+"Angola","Africa",35588996,276.045,16.8,0.581,107481,1937
+"Anguilla","North America",15877,NA,NA,NA,3904,12
+"Antigua and Barbuda","North America",93772,191.511,32.1,0.778,9106,146
+"Argentina","South America",45510324,191.032,31.9,0.845,NA,NA
+"Armenia","Asia",2780472,341.01,35.7,0.776,452273,8777
+"Aruba","North America",106459,NA,41.2,NA,44224,292
+"Asia","",4721383370,NA,NA,NA,NA,NA
+"Australia","Oceania",26177410,107.791,37.9,0.944,11861161,25236
+"Austria","Europe",8939617,145.183,44.4,0.922,6082444,22534
+"Azerbaijan","Asia",10358078,559.812,32.4,0.756,835757,10353
+"Bahamas","North America",409989,235.954,34.3,0.814,39127,849
+"Bahrain","Asia",1472237,151.689,32.4,0.852,696614,1536
+"Bangladesh","Asia",171186368,298.003,27.5,0.632,2051348,29499
+"Barbados","North America",281646,170.05,39.8,0.814,108582,593
+"Belarus","Europe",9534956,443.129,40.3,0.823,994037,7118
+"Belgium","Europe",11655923,114.898,41.8,0.931,4872829,34339
+"Belize","North America",405285,176.957,25,0.716,71414,688
+"Benin","Africa",13352864,235.848,18.8,0.545,28036,163
+"Bermuda","North America",64207,139.547,NA,NA,18860,165
+"Bhutan","Asia",782457,217.066,28.6,0.654,62697,21
+"Bolivia","South America",12224114,204.299,25.4,0.718,1212147,22387
+"Bonaire Sint Eustatius and Saba","North America",27052,NA,NA,NA,11922,41
+"Bosnia and Herzegovina","Europe",3233530,329.635,42.5,0.78,403666,16392
+"Botswana","Africa",2630300,237.372,25.8,0.735,330696,2801
+"Brazil","South America",215313504,177.961,33.5,0.765,37511921,702116
+"British Virgin Islands","North America",31332,NA,NA,NA,7557,64
+"Brunei","Asia",449002,201.285,32.4,0.838,347723,179
+"Bulgaria","Europe",6781955,424.688,44.7,0.816,1329988,38700
+"Burkina Faso","Africa",22673764,269.048,17.6,0.452,22139,400
+"Burundi","Africa",12889583,293.068,17.5,0.433,54569,15
+"Cambodia","Asia",16767851,270.892,25.6,0.594,139319,3056
+"Cameroon","Africa",27914542,244.661,18.8,0.563,125246,1974
+"Canada","North America",38454328,105.599,41.4,0.929,4819055,55282
+"Cape Verde","Africa",593162,182.219,25.7,0.665,64474,417
+"Cayman Islands","North America",68722,NA,NA,NA,31472,37
+"Central African Republic","Africa",5579148,435.727,18.3,0.397,15441,113
+"Chad","Africa",17723312,280.995,16.7,0.398,7702,194
+"Chile","South America",19603736,127.993,35.4,0.851,5401126,64482
+"China","Asia",1425887360,261.899,38.7,0.761,99373219,122304
+"Colombia","South America",51874028,124.24,32.2,0.767,6391876,142727
+"Comoros","Africa",836783,261.516,20.4,0.554,9109,160
+"Congo","Africa",5970430,344.094,19,0.574,25227,389
+"Cook Islands","Oceania",17032,NA,NA,NA,7345,2
+"Costa Rica","North America",5180836,137.973,33.6,0.81,1234701,9372
+"Cote d'Ivoire","Africa",28160548,303.74,18.7,0.538,88434,835
+"Croatia","Europe",4030361,253.782,44,0.851,1317144,18752
+"Cuba","North America",11212198,190.968,43.1,0.783,1113662,8530
+"Curacao","North America",191173,NA,41.7,NA,45883,305
+"Cyprus","Europe",896007,141.171,37.3,0.887,696410,1451
+"Czechia","Europe",10493990,227.485,43.3,0.9,NA,NA
+"Democratic Republic of Congo","Africa",99010216,318.949,17,0.48,101009,1474
+"Denmark","Europe",5882259,114.767,42.3,0.94,3435679,9693
+"Djibouti","Africa",1120851,258.037,25.4,0.524,15690,189
+"Dominica","North America",72758,227.376,NA,0.742,16047,74
+"Dominican Republic","North America",11228821,266.653,27.6,0.756,661103,4384
+"East Timor","Asia",1341298,335.346,18,0.606,NA,NA
+"Ecuador","South America",18001002,140.448,28.1,0.759,1077445,36050
+"Egypt","Africa",110990096,525.432,25.3,0.707,516023,24830
+"El Salvador","North America",6336393,167.295,27.6,0.673,201920,4230
+"England","Europe",56550000,NA,NA,NA,NA,NA
+"Equatorial Guinea","Africa",1674916,202.812,22.4,0.592,17130,183
+"Eritrea","Africa",3684041,311.11,19.3,0.459,10189,103
+"Estonia","Europe",1326064,255.569,42.7,0.892,NA,NA
+"Eswatini","Africa",1201680,333.436,21.5,0.611,75356,1427
+"Ethiopia","Africa",123379928,182.634,19.8,0.485,501193,7574
+"Europe","",744807803,NA,NA,NA,NA,NA
+"European Union (27)","",450146793,NA,NA,NA,NA,NA
+"Falkland Islands","South America",3801,NA,NA,NA,1923,0
+"Faroe Islands","Europe",53117,NA,NA,NA,NA,NA
+"Fiji","Oceania",929769,412.82,28.6,0.743,69047,885
+"Finland","Europe",5540745,153.507,42.8,0.938,1499712,11466
+"France","Europe",67813000,86.06,42,0.901,38997490,168091
+"French Guiana","South America",304568,NA,25.3,NA,98041,413
+"French Polynesia","Oceania",306292,NA,32.7,NA,79387,650
+"Gabon","Africa",2388997,259.967,23.1,0.703,49051,307
+"Gambia","Africa",2705995,331.43,17.5,0.496,12627,372
+"Georgia","Asia",3744385,496.218,38.7,0.812,1863615,17150
+"Germany","Europe",83369840,156.139,46.6,0.947,38437756,174979
+"Ghana","Africa",33475870,298.245,21.1,0.611,172062,1462
+"Gibraltar","Europe",32677,NA,NA,NA,20550,113
+"Greece","Europe",10384972,175.695,45.3,0.888,5673681,39258
+"Greenland","North America",56494,199.941,NA,NA,11971,21
+"Grenada","North America",125459,243.964,29.4,0.779,19693,238
+"Guadeloupe","North America",395762,NA,43.4,NA,203235,1021
+"Guam","Oceania",171783,310.496,31.4,NA,52287,419
+"Guatemala","North America",17843914,155.898,22.9,0.663,1250371,20203
+"Guernsey","Europe",63329,NA,NA,NA,35326,67
+"Guinea","Africa",13859349,336.717,19,0.477,38572,468
+"Guinea-Bissau","Africa",2105580,382.474,19.4,0.48,9614,177
+"Guyana","South America",808727,373.159,26.3,0.682,74443,1302
+"Haiti","North America",11585003,430.548,24.3,0.51,34456,860
+"High-income countries","",1250514600,NA,NA,NA,NA,NA
+"Honduras","North America",10432858,240.208,24.9,0.634,472896,11114
+"Hong Kong","Asia",7488863,NA,44.8,0.949,NA,NA
+"Hungary","Europe",9967304,278.296,43.4,0.854,2230800,49053
+"Iceland","Europe",372903,117.992,37.3,0.949,210374,186
+"India","Asia",1417173120,282.28,28.2,0.645,NA,NA
+"Indonesia","Asia",275501344,342.864,29.3,0.718,6829399,162059
+"Iran","Asia",88550568,270.308,32.4,0.783,7627863,146837
+"Iraq","Asia",44496124,218.612,20,0.674,2465545,25375
+"Ireland","Europe",5023108,126.459,38.7,0.955,1745088,9744
+"Isle of Man","Europe",84534,NA,NA,NA,38008,116
+"Israel","Asia",9449000,93.32,30.6,0.919,4841558,12707
+"Italy","Europe",59037472,113.151,47.9,0.892,NA,NA
+"Jamaica","North America",2827382,206.537,31.4,0.734,157181,3611
+"Japan","Asia",123951696,79.37,48.2,0.919,33803572,74694
+"Jersey","Europe",110796,NA,NA,NA,66391,161
+"Jordan","Asia",11285875,208.257,23.2,0.729,1746997,14122
+"Kazakhstan","Asia",19397998,466.792,30.6,0.825,1504370,19072
+"Kenya","Africa",54027484,218.637,20,0.601,344106,5689
+"Kiribati","Oceania",131237,434.657,23.2,0.63,5085,24
+"Kosovo","Europe",1782115,NA,NA,NA,274279,3212
+"Kuwait","Asia",4268886,132.235,33.7,0.806,667290,2570
+"Kyrgyzstan","Asia",6630621,436.362,26.3,0.697,88953,1024
+"Laos","Asia",7529477,368.111,24.4,0.613,219060,671
+"Latvia","Europe",1850654,350.06,43.9,0.866,977765,7475
+"Lebanon","Asia",5489744,266.591,31.1,0.744,1239904,10947
+"Lesotho","Africa",2305826,405.126,22.2,0.527,36138,709
+"Liberia","Africa",5302690,272.509,19.2,0.48,8090,294
+"Libya","Africa",6812344,341.862,29,0.724,507269,6437
+"Liechtenstein","Europe",39355,NA,NA,0.919,21588,89
+"Lithuania","Europe",2750058,342.989,43.5,0.882,NA,NA
+"Low-income countries","",737604900,NA,NA,NA,NA,NA
+"Lower-middle-income countries","",3432097300,NA,NA,NA,NA,NA
+"Luxembourg","Europe",647601,128.275,39.7,0.916,393542,1000
+"Macao","Asia",695180,NA,39.2,NA,NA,NA
+"Madagascar","Africa",29611718,405.994,19.6,0.528,68567,1428
+"Malawi","Africa",20405318,227.349,18.1,0.483,89168,2686
+"Malaysia","Asia",33938216,260.942,29.9,0.81,NA,NA
+"Maldives","Asia",523798,164.905,30.6,0.74,186694,316
+"Mali","Africa",22593598,268.024,16.4,0.434,33166,743
+"Malta","Europe",533293,168.711,42.4,0.895,122796,922
+"Marshall Islands","Oceania",41593,557.793,NA,0.704,16297,17
+"Martinique","North America",367512,NA,45.7,NA,230354,1104
+"Mauritania","Africa",4736146,232.347,20.3,0.546,63872,997
+"Mauritius","Africa",1299478,224.644,37.4,0.804,328167,1073
+"Mayotte","Africa",326113,NA,20.1,NA,42027,187
+"Mexico","North America",127504120,152.783,29.3,0.779,NA,NA
+"Micronesia (country)","Oceania",114178,454.343,23,0.62,31765,65
+"Moldova","Europe",3272993,408.502,37.6,0.75,637520,12245
+"Monaco","Europe",36491,NA,NA,NA,17181,67
+"Mongolia","Asia",3398373,460.043,28.6,0.737,1011489,2136
+"Montenegro","Europe",627082,387.305,39.1,0.829,251280,2654
+"Montserrat","North America",4413,NA,NA,NA,1403,8
+"Morocco","Africa",37457976,419.146,29.6,0.686,1279115,16305
+"Mozambique","Africa",32969520,329.942,17.7,0.456,233843,2252
+"Myanmar","Asia",54179312,202.104,29.1,0.583,642885,19494
+"Namibia","Africa",2567024,243.811,22,0.646,172533,4108
+"Nauru","Oceania",12691,NA,NA,NA,5393,1
+"Nepal","Asia",30547586,260.797,25,0.602,1003450,12031
+"Netherlands","Europe",17564020,109.361,43.2,0.944,8640008,22986
+"New Caledonia","Oceania",289959,NA,33.4,NA,80163,314
+"New Zealand","Oceania",5185289,128.797,37.9,0.931,NA,NA
+"Nicaragua","North America",6948395,137.016,27.3,0.66,16185,245
+"Niger","Africa",26207982,238.339,15.1,0.394,9518,315
+"Nigeria","Africa",218541216,181.013,18.1,0.539,267188,3155
+"Niue","Oceania",1952,NA,NA,NA,1074,0
+"North America","",600323657,NA,NA,NA,124492666,1671178
+"North Korea","Asia",26069416,321.681,35.3,NA,0,0
+"North Macedonia","Europe",2093606,322.688,39.1,0.774,350924,9978
+"Northern Cyprus","Asia",382836,NA,NA,NA,NA,NA
+"Northern Ireland","Europe",1896000,NA,NA,NA,NA,NA
+"Northern Mariana Islands","Oceania",49574,194.994,NA,NA,14912,41
+"Norway","Europe",5434324,114.316,39.7,0.957,1512647,5732
+"Oceania","",45038860,NA,NA,NA,NA,NA
+"Oman","Asia",4576300,266.342,30.7,0.813,399449,4628
+"Pakistan","Asia",235824864,423.031,23.5,0.557,1580631,30656
+"Palau","Oceania",18084,NA,NA,0.826,6372,10
+"Palestine","Asia",5250076,265.91,20.4,0.708,703228,5708
+"Panama","North America",4408582,128.346,29.7,0.815,1044821,8748
+"Papua New Guinea","Oceania",10142625,561.494,22.6,0.555,46864,670
+"Paraguay","South America",6780745,199.128,26.5,0.728,735759,19880
+"Peru","South America",34049588,85.755,29.1,0.777,4526977,220975
+"Philippines","Asia",115559008,370.437,25.2,0.718,4173631,66864
+"Pitcairn","Oceania",47,NA,NA,NA,4,0
+"Poland","Europe",39857144,227.331,41.8,0.88,6670799,120726
+"Portugal","Europe",10270857,127.842,46.2,0.864,5664109,28809
+"Puerto Rico","North America",3252412,108.094,38.2,NA,1252713,5938
+"Qatar","Asia",2695131,176.69,31.9,0.848,514524,690
+"Reunion","Africa",974062,NA,36,NA,494595,921
+"Romania","Europe",19659270,370.946,43,0.828,3541619,68825
+"Russia","Europe",144713312,431.297,39.6,0.824,24268728,403188
+"Rwanda","Africa",13776702,191.375,20.3,0.543,133264,1468
+"Saint Barthelemy","North America",10994,NA,NA,NA,5507,5
+"Saint Helena","Africa",5401,NA,NA,NA,2166,0
+"Saint Kitts and Nevis","North America",47681,NA,NA,0.779,6607,46
+"Saint Lucia","North America",179872,204.62,34.9,0.759,30282,410
+"Saint Martin (French part)","North America",31816,NA,NA,NA,12324,46
+"Saint Pierre and Miquelon","North America",5885,NA,NA,NA,3426,2
+"Saint Vincent and the Grenadines","North America",103959,252.675,31.8,0.738,9674,124
+"Samoa","Oceania",222390,348.977,22,0.715,17057,31
+"San Marino","Europe",33690,NA,NA,NA,25292,126
+"Sao Tome and Principe","Africa",227393,270.113,18.7,0.625,6771,80
+"Saudi Arabia","Asia",36408824,259.538,31.9,0.854,841469,9646
+"Scotland","Europe",5466000,NA,NA,NA,NA,NA
+"Senegal","Africa",17316452,241.219,18.7,0.512,89485,1971
+"Serbia","Europe",6871547,439.415,41.2,0.806,2583470,18057
+"Seychelles","Africa",107135,242.648,36.2,0.796,51886,172
+"Sierra Leone","Africa",8605723,325.721,19.1,0.452,7979,126
+"Singapore","Asia",5637022,92.243,42.4,0.938,3006155,2024
+"Sint Maarten (Dutch part)","North America",44192,NA,NA,NA,11051,92
+"Slovakia","Europe",5643455,287.959,41.2,0.86,1878002,21227
+"Slovenia","Europe",2119843,153.493,44.5,0.917,1356582,10083
+"Solomon Islands","Oceania",724272,459.78,20.8,0.567,25954,199
+"Somalia","Africa",17597508,365.769,16.8,NA,27334,1361
+"South Africa","Africa",59893884,200.38,27.3,0.709,4072765,102595
+"South America","",436816679,NA,NA,NA,68809418,1354187
+"South Korea","Asia",51815808,85.998,43.4,0.916,34571873,35934
+"South Sudan","Africa",10913172,280.775,19.2,0.433,18823,147
+"Spain","Europe",47558632,99.403,45.5,0.904,13980340,121852
+"Sri Lanka","Asia",21832150,197.093,34.1,0.782,672798,16907
+"Sudan","Africa",46874200,431.388,19.7,0.51,63993,5046
+"Suriname","South America",618046,258.314,29.6,0.738,82501,1406
+"Sweden","Europe",10549349,133.982,41,0.945,2755181,27399
+"Switzerland","Europe",8740471,99.739,43.1,0.955,4457868,14170
+"Syria","Asia",22125242,376.264,21.7,0.567,57423,3163
+"Taiwan","Asia",23893396,103.957,42.2,NA,NA,NA
+"Tajikistan","Asia",9952789,427.698,23.3,0.668,17786,125
+"Tanzania","Africa",65497752,217.288,17.7,0.529,43230,846
+"Thailand","Asia",71697024,109.861,40.1,0.777,NA,NA
+"Togo","Africa",8848700,280.033,19.4,0.515,39530,290
+"Tokelau","Oceania",1893,NA,NA,NA,80,0
+"Tonga","Oceania",106867,227.49,22.3,0.725,16976,12
+"Trinidad and Tobago","North America",1531043,228.467,36.2,0.796,191496,4390
+"Tunisia","Africa",12356116,318.991,32.7,0.74,1153361,29423
+"Turkey","Asia",85341248,171.285,31.6,0.82,17004718,101419
+"Turkmenistan","Asia",6430777,536.783,26.9,0.715,0,0
+"Turks and Caicos Islands","North America",45726,NA,NA,NA,6805,40
+"Tuvalu","Oceania",11335,NA,NA,NA,2943,1
+"Uganda","Africa",47249588,213.333,16.4,0.544,172154,3632
+"Ukraine","Europe",39701744,539.849,41.4,0.779,5532777,109920
+"United Arab Emirates","Asia",9441138,317.84,34,0.89,1067030,2349
+"United Kingdom","Europe",67508936,122.137,40.8,0.932,24974629,232112
+"United States","North America",338289856,151.089,38.3,0.926,103436829,1193165
+"United States Virgin Islands","North America",99479,273.67,42.2,NA,25389,132
+"Upper-middle-income countries","",2525921300,NA,NA,NA,NA,NA
+"Uruguay","South America",3422796,160.708,35.6,0.817,1041346,7682
+"Uzbekistan","Asia",34627648,724.417,28.2,0.72,175081,1016
+"Vanuatu","Oceania",326744,546.3,23.1,0.609,12019,14
+"Vatican","Europe",808,NA,NA,NA,26,0
+"Venezuela","South America",28301700,204.85,29,0.711,552695,5856
+"Vietnam","Asia",98186856,245.465,32.6,0.704,11624000,43206
+"Wales","Europe",3170000,NA,NA,NA,NA,NA
+"Wallis and Futuna","Oceania",11596,NA,NA,NA,3760,9
+"Western Sahara","Africa",576005,NA,28.4,NA,NA,NA
+"World","",7975105024,233.07,30.9,0.737,NA,NA
+"Yemen","Asia",33696612,495.003,20.3,0.47,11945,2159
+"Zambia","Africa",20017670,234.499,17.7,0.584,349842,4077
+"Zimbabwe","Africa",16320539,307.846,19.6,0.571,266386,5740
