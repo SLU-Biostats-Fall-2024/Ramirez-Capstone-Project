@@ -1,0 +1,16 @@
+---
+title: "data exploration feedback"
+format: html
+editor: visual
+---
+
+## Data Exploration Feedback
+
+1.  I'd like to see the original, unmanipulated data file in the data folder as well. Metadata is good and complete.
+2.  Think about naming (or, in this case, renaming) all of your .qmd files with something about the purpose in the name (e.g. data-exploration.qmd, analysis1.qmd, etc)
+3.  Please work on providing more commentary with your .qmd files. For example, after you run `glimpse(covid)` what do you learn about the dataset that you'd want to be able to quickly think about in a year if you looked back at this project? What stands out?
+4.  While on lines 28 - 32 you "fix" some variables, you don't do any error checking to make sure things are correct. How do you know that there are not errors in your factor variables or that there aren't possible outliers in your numeric variables? Checking all of this and becoming very familiar with the nature of your data is an essential step of data analysis. Really, though you make some plots that are about the specific analyses you wish to perform, you did so before doing any of the steps in which we really become familiar with our data and check for errors.
+5.  I like that on line 81 you do some interpretation of what you see. I'd like to see more of this type of commentary throughout your .qmd file.
+6.  Your plot of max.cases/population vs. hdi is interesting! It also doesn't appear to be linear - we will probabaly want to up our analysis game in terms of statistical test. At the very least, we should think about a glm rather than lm model (glm is the subject of chapter 7 in our book so you may wish to start reading it).
+
+You are on the right track - but please go back and do some of this data exploration (plotting histograms, boxplots to look for outliers and get a feel for your data) before you move on to analysis. I will look in your next "draft" to see that you have fixed up this code to address the suggestions I have made.
