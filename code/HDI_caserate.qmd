@@ -1,0 +1,66 @@
+---
+title: "HDI_Caserate"
+format: html
+editor: visual
+---
+
+This file will explore my third hypothesis that a higher Human Development Index (HDI) corresponds to a lower case rate (defined as the maximum number of cases per population).
+
+Let's set up:
+
+```{r}
+rm(list = ls())
+library(here)
+library(tidyverse)
+library(ggfortify)
+covid<-read.csv(here("data","covid.summary.csv"))
+glimpse(covid)
+```
+
+Now I'll copy my original plot here:
+
+```{r}
+ggplot(covid,aes(human_development_index,max.cases/population))+
+  geom_point()
+```
+
+At first this is surprising. I originally expected there to be a negative correlation because of the improved health services and overall quality of life that define HDI. Upon deeper though, however, this seeming strong positive relation could be attributed to countries that have higher HDIs typically also having more people who interact with each other more. What this could mean is that a higher HDI implies that there are more people travelling between more places more often, which allows Covid to spread much more easily than less developed countries who may have less people travelling less often. Essentially, a higher HDI, though defined by better quality of life and health services, also implies more disease-spreading-opportunities.
+
+# Let's put this to the test with a model
+
+```{r}
+hdicasesmod<-lm(max.cases/population~human_development_index,data = covid)
+```
+
+check the assumptions:
+
+```{r}
+autoplot(hdicasesmod)
+```
+
+These look great.
+
+# Time for stats!
+
+```{r}
+anova(hdicasesmod)
+```
+
+Here we have an extremely significant relation with an F(1,175)=219.01 and a p\<\<.001. We will reject the null hypothesis. Also we must note that moving forward, we cannot support the original hypothesis because the data trended up rather than down. We will instead be looking to support the opposite hypothesis.
+
+```{r}
+summary(hdicasesmod)
+```
+
+Here, we see a strong positive correlation, with an R2=.56, supporting the alternative hypothesis. This was unexpected at first, but later on was felt to be more expected after rejecting the original hypothesis.
+
+# Summary graph:
+
+```{r}
+ggplot(covid,aes(human_development_index,max.cases/population))+
+  geom_point()+
+  geom_smooth(method = 'lm')+
+  theme_bw()+
+  ylab("Case Rate (max cases/population)")+
+  xlab("Human Development Index")
+```
