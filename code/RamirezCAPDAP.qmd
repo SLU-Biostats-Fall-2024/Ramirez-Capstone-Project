@@ -38,7 +38,7 @@ grabbing the data I want:
 
 ```{r}
 covid.sum<-covid|>
-  group_by(location,continent,population,cardiovasc_death_rate,median_age,human_development_index,)|>
+  group_by(location,continent,population,cardiovasc_death_rate,median_age,human_development_index)|>
   summarise(max.cases=max(total_cases),max.deaths=max(total_deaths))
 ```
 
