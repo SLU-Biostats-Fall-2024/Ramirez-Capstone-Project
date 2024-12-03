@@ -1,0 +1,62 @@
+---
+title: "prelim analysis feedback"
+format: html
+editor: visual
+---
+
+## Preliminary Data Analysis
+
+### General
+- I need you to go back and revise your data exploration so that it reflect the suggestions I made in the feedback I gave on that assignment. I made a comment when I graded the data exploration that I would be looking to see that you have updated it for this step of the assignment and it does not appear that you have done so.
+
+- Please use leading zeros in your writing. That means we use 0.05 rather than .05.
+
+- think about scaling max deaths/population. Currently, I think it is "per person" and it is hard to imagine what a death rate of 0.004 means. But if you scaled it per 1000 people, for instance, then your values would be more like 4 - 6. Which is high (4 - 6 of every 1000 people dying!).
+
+
+
+### Cardio deathrate
+Line 7 - please be more precise with your language when you describe this analysis. The way it is stated makes it difficult to understand what your response variable is vs. predictor variable(s).
+
+Also, you should plan to include a statement of your null and alternative hypotheses as well as scientific (rather than just statistical) justification for them.
+
+Lines 30 - 49 - I'd like to see both more commentary outside of code chunks and commenting within the code chunks on what you are doing and why.
+
+Because you refer to 2 death rates in this analysis (cardiovascular death rate and max deaths/population) you may wish to call max death per pop something like "Deaths due to covid"
+
+Line 59 - WHAT is important to note about the cluster of pts in the 200-300 range on x and less thatn 0.00025 on y? 
+
+Line 65 - You have a choice here. EITHER do as you have, and conduct 3 separate analyses to reflect the 3 stages of the covid epidemic, OR the "simpler/slicker way" is to have another predictor in your model called "epidemic phase" as a categorical predictor. In that case, you would be bascially conducting an ANCOVA, about which there is lots of information in Chapter 6 of your book. It is because of this issue that I wanted you to be more clear about your predictors and response vars at the top of this file, becasue it wasn't clear as written if you were doing 3 analyses or 1.
+
+Line 90 - Answer: We implement a `glm` analysis rather than `lm`. We will talk about it in class, and it is also the subject of chapter 7 of your book.
+
+Line 108 - this is an interesting case where though the slopes are significantly different from zero (that's what the p-value tells you), with low R2 it just isn't explaining much of the variation in the cloud of points.
+
+It would be better to do this analysis as an ANCOVA. Take a look at the second half of chapter 6.
+
+### HDI case rate
+As above, please work on stating your question more precisely and provid the null and alternative hypotheses with biological (or in this case perhaps sociological) justification.
+
+Line 27 - I wonder if the somewhat unexpected pattern may also result from countries with lower HDI having less ability to track/count/correctly report covid numbers?
+
+Please try to use the data in your plot to guess the slope and y-intercept before building the model (the plot and guess step of our workflow).
+
+Line 41 - actually, your autoplot don't look too great. There is a somewhat u-shaped curve in the residuals vs. fitted, a bunch of the points are of the QQ plot in the upper quantiles, and there is a curvy line in the scale-location plot. Again, we may need glm here. If you could plot histogram  of your variables in the data exploration step, we might have noticed this earlier.
+
+Line 49 - you don't need to (nor should you) change your hypotheseis to fit the outcome moving forward. That is bad practice, because it would mean that you always find support for your hypotheses. Instead, we are just open to the idea that the pattern that was demonstrated was not the pattern you were expecting, and we look for a reasonable scientific explanation for an unexpedted result.
+
+Line 57 - it is strange that your y axis goes below zero, becasuse you can't actually have a negative covid case rate. It think what might be going on here is that you have some "zero inflation" in that you have a bunch of countries for which the case rate was zero.
+
+You may wish therefore to acknowledge that there are not likely to be any countries with a case rate of zero and perhaps filter your data so that case rate > 0 for the data set you analyze.
+
+### Med age - death rate
+Please apply same feedback from above two cases to this case as well.
+
+As for the above question, you may wish to eliminate countries for which the max deaths/population = 0, because it is very unlikely to be true that there were countries with no covid deaths.
+
+Please attempt to guess the slope and y-intercept before you create the model.
+
+Line 43 - While the assumptions might be "acceptable" I wouldn't say they "look great" - careful with wording.
+
+Again it seems strange to me to show a plot with negative max covide death rate.. you can control the limits of the y-axis to prevent this from happening.
+
