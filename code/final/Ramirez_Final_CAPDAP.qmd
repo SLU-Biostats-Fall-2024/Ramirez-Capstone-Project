@@ -10,4 +10,331 @@ In this document is the culmination of a data analysis project done with COVID-1
 
 The data spans around four and a half years, starting at 1 January, 2020 and going until 4 August, 2024. In total, the data set has 429436 rows of data with 67 columns. It should also be noted that each country/region, denoted "location," has 1674 rows of data.
 
-To prepare the data for the project, I first had to look at the data, come up with some interesting hypotheses, and decide which variables I needed to use. I then created a new .csv file including all the variables I intended to use as well as adding certain columns for maximums. Finally, I used this new .csv file to quickly see some of the relationships I was to explore. This step also helped me double-check if I prepared the file correctly.
+To prepare the data for the project, I created a file now called "Data-Exploration.qmd" so I could first look at the data, come up with some interesting hypotheses, and decide which variables I needed to use. I then created a new .csv file including all the variables I intended to use as well as adding certain columns for maximums. Finally, I used this new .csv file to quickly see some of the relationships I was to explore. This step also helped me double-check if I prepared the file correctly.
+
+# Analysis 1
+
+Here, I will further explore my first hypothesis. I claim that higher cardiovascular death rates positively affect the Covid death rate (Covid deaths are a function of cardiovascular deaths) in three different eras of Covid (early Covid, the height of Covid, and post-Covid). We'll say these eras are by the year.
+
+The null hypothesis here is that there is no relation between cardiovascular death rates and covid death rates. The alternative hypothesis is that there is a relation.
+
+Let's set things up:
+
+```{r}
+rm(list = ls())
+library(here)
+library(tidyverse)
+library(ggfortify)
+bigcovid<-read.csv(here("data","Ramirez-Covid-Data.csv"))
+bigcovid<-bigcovid[,1:14]
+bigcovid$date<-mdy(bigcovid$date)
+bigcovid$location<-as.factor(bigcovid$location)
+bigcovid$continent<-as.factor(bigcovid$continent)
+glimpse(bigcovid)
+```
+
+Recall that this is the csv I created during my data exploration. It contains only the variables I plan to use for my hypotheses. For now, I will also need to split up the data by date. I forgot to include dates, so instead I will use an older csv for this hypothesis.
+
+## Let's create a new data frame from this data
+
+We will have to create groups by the date
+
+```{r}
+covid<-bigcovid|>
+  group_by(location,year(date),population,cardiovasc_death_rate)|>
+  summarise(covid.deaths=max(total_deaths))## here I am creating a new data frame with all the variables that I need. The year() function helps grab just the year of the dates listed
+covid<-covid|>
+  filter(covid.deaths>0) #I am removing any death rates equal to 0 because the chances that any location has 0 deaths is assumed to be impossible
+```
+
+Make the covid eras:
+
+```{r}
+covid$`year(date)`<-as.factor(covid$`year(date)`)
+levels(covid$`year(date)`)
+```
+
+```{r}
+covid$`year(date)`<-gsub("2020","Early",covid$`year(date)`)
+covid$`year(date)`<-gsub("2021","Height",covid$`year(date)`)
+covid$`year(date)`<-gsub("2022","Height",covid$`year(date)`)
+covid$`year(date)`<-gsub("2023","Post",covid$`year(date)`)
+covid$`year(date)`<-gsub("2024","Post",covid$`year(date)`)
+```
+
+Let's make a plot to start. Note that I am multiplying the covid death rate by 1000 to make it easier to understand as deaths per 1000 as opposed to deaths per person:
+
+```{r}
+ggplot(covid, aes(cardiovasc_death_rate,1000*covid.deaths/population))+
+  geom_point()+
+  facet_wrap(~`year(date)`)
+```
+
+There seem to be intercepts all really close to 0, but we know that may not necessarily be the case because having 0 deaths due to covid is highly unlikely. the slopes seem to be about -0.125, -0.4, and -0.75. Recall that we suppose there could be actually a negative correlation. Here, it looks like there could be a strong negative correlation in the first group, a fair negative correlation in the second, and a fair negative correlation in the third. It is important to note the cluster of points in the 2-3 hundred range on the x and less than 0.25 on the y for all three eras. If there does happen to be a relationship, differential equations could point to this range being a "sweet spot" or an equilibrium. In other words, over time, all locations could shift to this range if the correlation exists.
+
+## Now I will further analyze these data
+
+Creating the general linear regression models:
+
+*Note that everything is done three times to reflect the three different time frames*
+
+```{r}
+covid.before<-covid|>
+  filter(`year(date)`=="Early")
+covid.height<-covid|>
+  filter(`year(date)`=="Height")
+covid.post<-covid|>
+  filter(`year(date)`=="Post")
+```
+
+```{r}
+modelearly<-glm(covid.deaths/population~cardiovasc_death_rate,data = covid.before,family = quasipoisson(link = "log"))
+modelheight<-glm(covid.deaths/population~cardiovasc_death_rate,data = covid.height,family = quasipoisson(link = "log"))
+modelpost<-glm(covid.deaths/population~cardiovasc_death_rate,data = covid.post,family = quasipoisson(link = "log"))
+```
+
+Checking the assumptions:
+
+```{r}
+autoplot(modelearly)
+autoplot(modelheight)
+autoplot(modelpost)
+```
+
+The assumptions look weird but fine. I am unsure of any better model to use and do not know how exactly to figure that out, so I will continue with the quasipoisson model
+
+## Let's look at the stats now:
+
+```{r}
+anova(modelearly)
+anova(modelheight)
+anova(modelpost)
+```
+
+The relation in the early group is super significant by an F(1)=19.455 and a p value \<\<0.001. For the "height" group it is also significant, but it should be noted it is a much smaller significance with an F(1)=10.763 and p\<0.01. Finally, for the "post" group we see another very significant relation with F(1)=15.44 and p\<\<0.001. All three models allow us to reject the null hypothesis that there is no relation.
+
+```{r}
+summary(modelearly)
+summary(modelheight)
+summary(modelpost)
+```
+
+We now see that there are decent correlations here, with Residual Deviance values of about 0.08 0.48, and 0.51. this means that the data fit the quasipoisson distribution fairly well.
+
+## Let's sum it up with a plot
+
+```{r}
+ggplot(covid.before,aes(cardiovasc_death_rate,1000*covid.deaths/population))+
+  geom_point()+
+  geom_smooth(method = 'glm')+
+  theme_bw()+
+  ylab("Death Rate for Early Covid")+
+  xlab("Cardivascular Death Rate")
+ggplot(covid.height,aes(cardiovasc_death_rate,1000*covid.deaths/population))+
+  geom_point()+
+  geom_smooth(method = 'glm')+
+  theme_bw()+
+  ylab("Death Rate for Height of Covid")+
+  xlab("Cardivascular Death Rate")
+ggplot(covid.post,aes(cardiovasc_death_rate,1000*covid.deaths/population))+
+  geom_point()+
+  geom_smooth(method = "glm")+
+  theme_bw()+
+  ylab("Death Rate for Post Covid")+
+  xlab("Cardivascular Death Rate")
+```
+
+## Results
+
+All three models allow us to reject the null hypothesis that there is no relation. The relation in the early group is super significant by an F(1)=19.455 and a p value \<\<0.001. For the "height" group it is also significant, but it should be noted it is a much smaller significance with an F(1)=10.763 and p\<0.01. Finally, for the "post" group we see another very significant relation with F(1)=15.44 and p\<\<0.001. Additionally, they had Residual Deviance values of about 0.08 0.48, and 0.51. Though we rejected the null hypothesis, we cannot support the original one due to the data trending down. This relationship can most likely be attributed to the fact that with increasing cardiovascular death rates, there are more people dying from their preexisting conditions, meaning that the people who may be at higher risk are dying before they die from covid.
+
+# Analysis 2
+
+This section will explore my hypothesis that a higher Human Development Index (HDI) corresponds to a lower case rate (defined as the maximum number of cases per population). What this means is that it is predicted that the rate of positives cases is expected to be a function of HDI. I expect this outcome because a higher HDI corresponds to higher medical access and quality of life, meaning covid precautions, mainly vaccinations, are more accessible.
+
+The null hypothesis is that the two variables are unrelated and the alternative is that there is a affect of HDI on the case rate.
+
+Let's set up:
+
+```{r}
+rm(list = ls())
+library(here)
+library(tidyverse)
+library(ggfortify)
+covid<-read.csv(here("data","covid.summary.csv"))
+glimpse(covid)
+```
+
+Now I'll copy my original plot here:
+
+I am multiplying by 1000 to get a more easily understandable number. Essentially, this is cases per 1000 people.
+
+```{r}
+ggplot(covid,aes(human_development_index,1000*max.cases/population))+
+  geom_point()
+```
+
+I am guessing an intercept close to 0. We should not have any zeroes because it is highly unlikely that a location coud report exactly 0 cases. The slope seems to be around 0.6. At first this is surprising. I originally expected there to be a negative correlation because of the improved health services and overall quality of life that define HDI. Upon deeper thought, however, this seemingly strong positive relation could be attributed to countries that have higher HDIs typically also having more people who interact with each other more. What this could mean is that a higher HDI implies that there are more people travelling between more places more often, which allows Covid to spread much more easily than less developed countries who may have less people travelling less often. Additionally, lower HDI, which implies lower quality health services, could mean that pandemic-related data may be misreported or under reported. Essentially, a higher HDI, though defined by better quality of life and health services, also implies more disease-spreading-opportunities and a lower HDI could potentially imply lower quality reporting.
+
+## Let's put this to the test with a model
+
+This data is, for lack of a better word, weird. So I will use the quasipoisson model because of the overdispersion problem. I will also edit my data frame to remove zeroes, because the likelihood of having a zero cases is extremely low.
+
+```{r}
+covid<-covid|>
+  filter(max.cases>0)
+```
+
+```{r}
+hdicasesmod<-glm(max.cases/population~human_development_index,data = covid, family=quasipoisson(link = "sqrt"))
+```
+
+check the assumptions:
+
+```{r}
+autoplot(hdicasesmod)
+```
+
+These look much better than I originally had using a regular linear model.
+
+## Time for stats!
+
+```{r}
+anova(hdicasesmod, test = "F")
+```
+
+Here we have an extremely significant relation with an F(1,174)=345.44 and a p\<\<0.001. We will reject the null hypothesis. Also we must note that moving forward, we cannot support the original hypothesis because the data trended up rather than down. As stated, the reasoning for this could be related to population density increasing in developed countries (higher HDI) and quality of reporting potentially decreasing in less developed countries (lower HDI).
+
+```{r}
+summary(hdicasesmod)
+```
+
+Here, we see a strong correlation, with very low deviance (11.451) on 174 degrees of freedom.
+
+## Summary graph:
+
+This part is to help create our regression line:
+
+```{r}
+minhdi<-min(covid$human_development_index, na.rm = T)
+maxhdi<-max(covid$human_development_index, na.rm = T)
+new.x<-expand.grid(human_development_index=seq(minhdi,maxhdi,length=1000))
+```
+
+```{r}
+new.y<-predict(hdicasesmod, newdata = new.x, se.fit = TRUE)
+new.y <- data.frame(new.y)
+head(new.y)
+```
+
+```{r}
+addthis<-data.frame(new.x,new.y)
+addthis<-mutate(addthis, max.cases=exp(fit),
+                lwr=exp(fit-1.96*se.fit),
+                upr=exp(fit+1.96-se.fit))
+head(addthis)
+```
+
+Now for the actual plot:
+
+```{r}
+ggplot(covid,aes(human_development_index,1000*max.cases/population))+
+  geom_point(size=3, alpha=0.5)+
+  geom_smooth(
+    
+  #data = addthis,aes(ymin=lwr,ymax=upr),stat="identity")+ Unsure why this returns the non-numeric error, but I cannot figure this part out.
+  )+
+  theme_bw()+
+  ylab("Case Rate per 1000")+
+  xlab("Human Development Index")+
+  ylim(0,800)
+```
+
+## Results
+
+We have an extremely significant relation with an F(1,174)=345.44 and a p\<\<0.001. Ther is also very low deviance (11.451) on 174 degrees of freedom. We will reject the null hypothesis, but we cannot support the original hypothesis because the data trended up, not down. This relation can be explained by a higher HDI most likely corresponding to higher population densities, meaning there are many more interactions between people, leading to higher rates of spread. Additionally, it is interesting to think about the implications of lower HDIs, mainly that lower medical quality might imply lower quality medical reporting.
+
+# Analysis 3
+
+Here I will further explore my hypothesis that median age shares a positive correlation with the death rate of each country. So I predict that the death rate will act as a function of the median age.
+
+The null hypothesis is that there is no correlation, and the alternative is that there is an effect of median age on the death rate.
+
+Lets set things up again:
+
+```{r}
+rm(list = ls())
+library(here)
+library(tidyverse)
+library(ggfortify)
+covid<-read.csv(here("data","covid.summary.csv"))
+glimpse(covid)
+```
+
+Let's bring our plot back from before:
+
+```{r}
+ggplot(covid,aes(median_age,1000*max.deaths/population))+
+  geom_point()#I multiplied by 1000 to make this easier to understand as essentially deaths per 1000 people
+```
+
+I suspect a fairly strong positive correlation here. I see an intercept of 0, though that is not likely for any location to have 0 deaths. I also see a fairly low slope, maybe around 0.15. This would be due to elderly individuals being at higher risk. With a higher median age, it is logical to assume that there may be more elderly people in the population.
+
+## Let's make and use our model:
+
+I will remove any zeroes because of the above reason.
+
+```{r}
+covid<-covid|>
+  filter(max.cases>0)
+```
+
+We will use a linear regression:
+
+```{r}
+medagemod<-lm(max.deaths/population~median_age, data = covid)
+```
+
+checking assumptions:
+
+```{r}
+autoplot(medagemod)
+```
+
+The assumptions here look fair, so we will keep the linear model.
+
+## Move on to the stats:
+
+```{r}
+anova(medagemod)
+```
+
+We see a significant relationship here with an F(1,181)=161.48 and p\<\<0.001, so we will continue after rejecting the null hypothesis.
+
+```{r}
+summary(medagemod)
+```
+
+We see a fairly loose correlation here, with an R2 of about 0.47. This was lower than originally anticipated, but not totally unexpected.
+
+## A final graph to sum it up:
+
+```{r}
+ggplot(covid,aes(median_age,1000*max.deaths/population))+
+  geom_point()+
+  geom_smooth(method = 'lm',fullrange=F)+
+  theme_bw()+
+  ylab("Covid Death Rate per T")+
+  xlab("Median Age by Country")+
+  ylim(0,6.5)
+```
+
+## Results
+
+We reject the null hypothesis because the relationship was significant with an F(1,181)=161.48 and p\<\<0.001. We also see a loose correlation (R2=\~0.47), which was not unexpected. The cause of this relationship is probably cause by the fact that older people are more likely to die from covid. Locations with higher median ages will most likely have more elderly people as well.
+
+# Challenges
+
+The biggest challenge of the project for me was figuring out the "glm stuff." It was not too different from what I am used to, but trying to find a regression model that the data fit to was something I have little experience with. My data did not fit a normal or a poisson distribution, so I spent a large amount of time trying to look into that, ultimately with no luck other than trying out the quasipoisson. I was not too happy with how that worked out in Analysis 1, but I could not figure out an alternative.
+
+The only other real challenge was making sense of the three "eras" of covid for Analysis 1. I wanted to see if I could do ANCOVA for it, but with the other big challenge around glm and model-fitting, it was too much for me to handle.

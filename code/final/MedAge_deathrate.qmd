@@ -1,0 +1,78 @@
+---
+title: "Medage/Deathrate"
+format: html
+editor: visual
+---
+
+Here I will further explore my hypothesis that median age shares a positive correlation with the death rate of each country. So I predict that the death rate will act as a function of the median age.
+
+The null hypothesis is that there is no correlation, and the alternative is that there is an effect of median age on the death rate.
+
+Lets set things up again:
+
+```{r}
+rm(list = ls())
+library(here)
+library(tidyverse)
+library(ggfortify)
+covid<-read.csv(here("data","covid.summary.csv"))
+glimpse(covid)
+```
+
+Let's bring our plot back from before:
+
+```{r}
+ggplot(covid,aes(median_age,1000*max.deaths/population))+
+  geom_point()#I multiplied by 1000 to make this easier to understand as essentially deaths per 1000 people
+```
+
+I suspect a fairly strong positive correlation here. I see an intercept of 0, though that is not likely for any location to have 0 deaths. I also see a fairly low slope, maybe around 0.15. This would be due to elderly individuals being at higher risk. With a higher median age, it is logical to assume that there may be more elderly people in the population.
+
+## Let's make and use our model:
+
+I will remove any zeroes because of the above reason.
+
+```{r}
+covid<-covid|>
+  filter(max.cases>0)
+```
+
+We will use a linear regression:
+
+```{r}
+medagemod<-lm(max.deaths/population~median_age, data = covid)
+```
+
+checking assumptions:
+
+```{r}
+autoplot(medagemod)
+```
+
+The assumptions here look fair, so we will keep the linear model.
+
+## Move on to the stats:
+
+```{r}
+anova(medagemod)
+```
+
+We see a significant relationship here with an F(1,181)=161.48 and p\<\<0.001, so we will continue after rejecting the null hypothesis.
+
+```{r}
+summary(medagemod)
+```
+
+We see a fairly loose correlation here, with an R2 of about 0.47. This was lower than originally anticipated, but not totally unexpected.
+
+## A final graph to sum it up:
+
+```{r}
+ggplot(covid,aes(median_age,1000*max.deaths/population))+
+  geom_point()+
+  geom_smooth(method = 'lm',fullrange=F)+
+  theme_bw()+
+  ylab("Covid Death Rate per T")+
+  xlab("Median Age by Country")+
+  ylim(0,6.5)
+```

@@ -1,0 +1,101 @@
+---
+title: "HDI_Caserate"
+format: html
+editor: visual
+---
+
+This section will explore my hypothesis that a higher Human Development Index (HDI) corresponds to a lower case rate (defined as the maximum number of cases per population). What this means is that it is predicted that the rate of positives cases is expected to be a function of HDI. I expect this outcome because a higher HDI corresponds to higher medical access and quality of life, meaning covid precautions, mainly vaccinations, are more accessible.
+
+The null hypothesis is that the two variables are unrelated and the alternative is that there is a affect of HDI on the case rate.
+
+Let's set up:
+
+```{r}
+rm(list = ls())
+library(here)
+library(tidyverse)
+library(ggfortify)
+covid<-read.csv(here("data","covid.summary.csv"))
+glimpse(covid)
+```
+
+Now I'll copy my original plot here:
+
+I am multiplying by 1000 to get a more easily understandable number. Essentially, this is cases per 1000 people.
+
+```{r}
+ggplot(covid,aes(human_development_index,1000*max.cases/population))+
+  geom_point()
+```
+
+I am guessing an intercept close to 0. We should not have any zeroes because it is highly unlikely that a location coud report exactly 0 cases. The slope seems to be around 0.6. At first this is surprising. I originally expected there to be a negative correlation because of the improved health services and overall quality of life that define HDI. Upon deeper thought, however, this seemingly strong positive relation could be attributed to countries that have higher HDIs typically also having more people who interact with each other more. What this could mean is that a higher HDI implies that there are more people travelling between more places more often, which allows Covid to spread much more easily than less developed countries who may have less people travelling less often. Additionally, lower HDI, which implies lower quality health services, could mean that pandemic-related data may be misreported or under reported. Essentially, a higher HDI, though defined by better quality of life and health services, also implies more disease-spreading-opportunities and a lower HDI could potentially imply lower quality reporting.
+
+## Let's put this to the test with a model
+
+This data is, for lack of a better word, weird. So I will use the quasipoisson model because of the overdispersion problem. I will also edit my data frame to remove zeroes, because the likelihood of having a zero cases is extremely low.
+
+```{r}
+covid<-covid|>
+  filter(max.cases>0)
+```
+
+```{r}
+hdicasesmod<-glm(max.cases/population~human_development_index,data = covid, family=quasipoisson(link = "sqrt"))
+```
+
+check the assumptions:
+
+```{r}
+autoplot(hdicasesmod)
+```
+
+These look much better than I originally had using a regular linear model.
+
+## Time for stats!
+
+```{r}
+anova(hdicasesmod, test = "F")
+```
+
+Here we have an extremely significant relation with an F(1,174)=345.44 and a p\<\<0.001. We will reject the null hypothesis. Also we must note that moving forward, we cannot support the original hypothesis because the data trended up rather than down. As stated, the reasoning for this could be related to population density increasing in developed countries (higher HDI) and quality of reporting potentially decreasing in less developed countries (lower HDI).
+
+```{r}
+summary(hdicasesmod)
+```
+
+Here, we see a strong correlation, with very low deviance (11.451) on 174 degrees of freedom.
+
+## Summary graph:
+
+```{r}
+minhdi<-min(covid$human_development_index, na.rm = T)
+maxhdi<-max(covid$human_development_index, na.rm = T)
+new.x<-expand.grid(human_development_index=seq(minhdi,maxhdi,length=1000))
+```
+
+```{r}
+new.y<-predict(hdicasesmod, newdata = new.x, se.fit = TRUE)
+new.y <- data.frame(new.y)
+head(new.y)
+```
+
+```{r}
+addthis<-data.frame(new.x,new.y)
+addthis<-mutate(addthis, max.cases=exp(fit),
+                lwr=exp(fit-1.96*se.fit),
+                upr=exp(fit+1.96-se.fit))
+head(addthis)
+```
+
+```{r}
+ggplot(covid,aes(human_development_index,1000*max.cases/population))+
+  geom_point(size=3, alpha=0.5)+
+  geom_smooth(
+    
+  #data = addthis,aes(ymin=lwr,ymax=upr),stat="identity")+ Unsure why this returns the non-numeric error, but I cannot figure this part out.
+  )+
+  theme_bw()+
+  ylab("Case Rate per 1000")+
+  xlab("Human Development Index")+
+  ylim(0,800)
+```
