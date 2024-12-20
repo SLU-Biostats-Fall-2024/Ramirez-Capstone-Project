@@ -14,7 +14,7 @@ To prepare the data for the project, I created a file now called "Data-Explorati
 
 # Analysis 1
 
-Here, I will further explore my first hypothesis. I claim that higher cardiovascular death rates positively affect the Covid death rate (Covid deaths are a function of cardiovascular deaths) in three different eras of Covid (early Covid, the height of Covid, and post-Covid). We'll say these eras are by the year.
+Here, I will further explore my first hypothesis. I claim that higher cardiovascular death rates positively affect the Covid death rate (Covid deaths are a function of cardiovascular deaths) in three different eras of Covid (early Covid, the height of Covid, and post-Covid). We'll say these eras are by the year. I suspect that cardiovascular death rates would imply higher covid death rates due to cardiovascular disease being a high-risk factor (Boyalla et al.).
 
 The null hypothesis here is that there is no relation between cardiovascular death rates and covid death rates. The alternative hypothesis is that there is a relation.
 
@@ -150,7 +150,7 @@ All three models allow us to reject the null hypothesis that there is no relatio
 
 # Analysis 2
 
-This section will explore my hypothesis that a higher Human Development Index (HDI) corresponds to a lower case rate (defined as the maximum number of cases per population). What this means is that it is predicted that the rate of positives cases is expected to be a function of HDI. I expect this outcome because a higher HDI corresponds to higher medical access and quality of life, meaning covid precautions, mainly vaccinations, are more accessible.
+This section will explore my hypothesis that a higher Human Development Index (HDI) corresponds to a lower case rate (defined as the maximum number of cases per population). What this means is that it is predicted that the rate of positives cases is expected to be a function of HDI. I expect this outcome because a higher HDI corresponds to higher medical access and quality of life, meaning covid precautions, mainly vaccinations, are more accessible (Human Development Reports).
 
 The null hypothesis is that the two variables are unrelated and the alternative is that there is a affect of HDI on the case rate.
 
@@ -256,7 +256,7 @@ We have an extremely significant relation with an F(1,174)=345.44 and a p\<\<0.0
 
 # Analysis 3
 
-Here I will further explore my hypothesis that median age shares a positive correlation with the death rate of each country. So I predict that the death rate will act as a function of the median age.
+Here I will further explore my hypothesis that median age shares a positive correlation with the death rate of each country. I predict that the death rate will act as a function of the median age. We know age is also a risk factor, so higher ages should imply higher death rate due to covid (CDC).
 
 The null hypothesis is that there is no correlation, and the alternative is that there is an effect of median age on the death rate.
 
@@ -338,3 +338,11 @@ We reject the null hypothesis because the relationship was significant with an F
 The biggest challenge of the project for me was figuring out the "glm stuff." It was not too different from what I am used to, but trying to find a regression model that the data fit to was something I have little experience with. My data did not fit a normal or a poisson distribution, so I spent a large amount of time trying to look into that, ultimately with no luck other than trying out the quasipoisson. I was not too happy with how that worked out in Analysis 1, but I could not figure out an alternative.
 
 The only other real challenge was making sense of the three "eras" of covid for Analysis 1. I wanted to see if I could do ANCOVA for it, but with the other big challenge around glm and model-fitting, it was too much for me to handle.
+
+# Works Cited
+
+Boyalla, Vennela, Enrique Gallego-Colon, and Michael Spartalis. “Immunity and Inflammation in Cardiovascular Disorders.” *BMC Cardiovascular Disorders* 23, no. 1 (March 23, 2023). https://doi.org/10.1186/s12872-023-03185-z.
+
+“Human Development Index.” Human Development Reports, November 27, 2024. https://hdr.undp.org/data-center/human-development-index#/indicies/HDI.
+
+“Underlying Conditions and the Higher Risk for Severe COVID-19.” Centers for Disease Control and Prevention, July 30, 2024. https://www.cdc.gov/covid/hcp/clinical-care/underlying-conditions.html#:\~:text=Age%20is%20the%20strongest%20risk,are%20also%20at%20higher%20risk.&text=Additionally%2C%20being%20unvaccinated%20or%20not,of%20severe%20COVID%2D19%20outcomes.
