@@ -1,0 +1,29 @@
+---
+title: "README"
+format: html
+editor: visual
+---
+
+This is a README file created to detail to contents of this folder. This folder was created by Esteban Ramirez and pertains to the final "CAPDAP" for Biostats.
+
+folder/files
+
+-   draft: folder contains files from the preliminary stages of this project
+
+    -   Data-Exploration.qmd: document from the data preparation stage where new .csv files were created for the purpose of this project
+
+    -   Prelim-Cardio_deathrate.qmd: the preliminary analysis of the relationship between covid deaths and cardiovascular deaths
+
+    -   Prelim-HDI-caserate.qmd: the preliminary analysis of the relationship between covid cases and Human Development Index
+
+    -   Prelim-MedAge_deathrate.qmd: the preliminary analysis of the relationship between covid deaths and median age of a location (as defined by the finalized project file)
+
+    -   Cardio_deathrate.qmd: the final analysis of the relationship between covid deaths and cardiovascular deaths (included in the "Ramirez_Final_CAPDAP.qmd" file)
+
+    -   HDI-caserate.qmd: the final analysis of the relationship between covid cases and Human Development Index (included in the "Ramirez_Final_CAPDAP.qmd" file)
+
+    -   MedAge_deathrate.qmd: the final analysis of the relationship between covid deaths and median age of a location (included in the "Ramirez_Final_CAPDAP.qmd" file)
+
+-   final: folder contains the final version of the report
+
+    -   Ramirez_Final_CAPDAP.qmd: finalized version of the project containing the full report
